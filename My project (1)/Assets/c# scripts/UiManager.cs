@@ -1,23 +1,25 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine.UI;
 
 public class UiManager : MonoBehaviour
 {
-    public InputField field;
-    [SerializeField] TextMeshProUGUI name;
+    public TMP_InputField tmpInputField;
+    public TMP_Text outputText; // TMP Text элемент для отображения текста
+    public Button submitButton; // кнопка для подтверждения ввода
 
-    // Строка, которую мы хотим отобразить в TextMeshPro
-    public void UpdateTextMeshProText()
+    void Start()
     {
-        // Получаем текст из поля ввода
-        string inputText = field.text;
-        
-        // Присваиваем полученный текст полю Text у объекта TextMeshProUGUI
-        name.text = inputText;
+        // Добавляем слушатель для кнопки
+        submitButton.onClick.AddListener(OnSubmitButtonClicked);
     }
-    
 
+    void OnSubmitButtonClicked()
+    {
+        // Получаем введенное значение из TMP Input Field
+        string input = tmpInputField.text;
+
+        // Переносим текст в TMP Text элемент
+        outputText.text = input;
+    }
 }
